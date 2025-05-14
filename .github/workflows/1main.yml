@@ -19,9 +19,9 @@ jobs:
       - name: Login to Alibaba Cloud ACR
         uses: docker/login-action@v3
         with:
-          registry: ${{ ssais_medicine_cgz }}
-          username: ${{ 919439511@qq.com }}
-          password: ${{ guoxinyu1995321 }}
+          registry: ${{ secrets.ALIYUN_REGISTRY }}
+          username: ${{ secrets.ALIYUN_REGISTRY_USER }}
+          password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
 
       - name: Build Docker image
         run: |
@@ -29,4 +29,3 @@ jobs:
       - name: Push Docker image
         run: |
           docker push ${{ secrets.ALIYUN_REGISTRY }}/assam/sais_medicine:latest
-两处“assam”的内容需要替换为你自己阿里云账户的命名空间，然后提交workflow，等待GitHub把镜像打包至阿里云仓库，时间较长，可以通过旁边的jobs查看日志.
